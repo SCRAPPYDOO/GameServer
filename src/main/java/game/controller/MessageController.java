@@ -1,6 +1,6 @@
 package game.controller;
 
-import game.dto.Message;
+import game.dto.ChatMessage;
 import game.dto.OutputMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -17,16 +17,16 @@ public class MessageController {
     @Autowired
     private SimpMessagingTemplate template;
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 5000)
     public void greeting() {
         System.out.println("scheduled");
-        Message message = new Message("from server", "message");
-        this.template.convertAndSend("/chat", message);
+        ChatMessage message = new ChatMessage("from server", "message");
+        this.template.convertAndSend("/chat/warcaby", message);
     }
 
     @MessageMapping("/message")
     @SendTo("/chat")
-    public OutputMessage send(Message message) throws Exception {
-        return new OutputMessage(message.getFrom(), message.getText(), "chat");
+    public OutputMessage send(ChatMessage message) throws Exception {
+        return null;
     }
 }
