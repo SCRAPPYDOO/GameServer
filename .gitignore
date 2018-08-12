@@ -4,3 +4,4 @@ target/
 .classpath
 .settings/org.eclipse.core.resources.prefs
 .settings/org.eclipse.jdt.core.prefs
+.idea/workspace.xml
